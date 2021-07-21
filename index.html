@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>File to base64</title>
+</head>
+<body>
+  <input type="file" id="file">
+  <button onclick="javascript:getRes();">Get base64</button>
+  <button onclick="javascript:copyToClip();">Copy</button>
+  <div id="output" style="word-wrap: break-word;">
+  <script>
+    function getRes(){
+      var input = document.querySelector("#file");
+      var reader = new FileReader();
+      reader.onload = (e)=>{
+        document.querySelector("#output").innerHTML = e.target.result;
+      }  
+      reader.readAsDataURL(input.files[0]);
+    }
+
+    function copyToClip() {
+      navigator.clipboard.writeText(document.querySelector("#output").innerHTML);
+    }
+  </script>
+</body>
+</html>
